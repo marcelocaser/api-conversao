@@ -14,4 +14,13 @@ docker container run -it api-conversao /bin/bash
 docker container run -d -p 8080:8080 *porta local/porta remota* marcelocaser/api-conversao:v1
 
 # apaga um container
-docker container rm {id}
+docker container rm {id/nome container}
+
+# constroi imagem de um arquivo Dockerfile
+docker image build -t marcelocaser/api-conversao:v1 .
+
+# mostra as imagens disponiveis local
+docker image ls
+
+# exibe o historico de criacao da imagem
+docker image history  marcelocaser/api-conversao:v1
