@@ -48,3 +48,6 @@ docker container run -d -p 8080:8080 -v mongo_vol:/data/db marcelocaser/api-conv
 
 # listar volumes
 docker volume ls (lista os volumes)
+
+# utilizando docker compose
+docker-compose up -d
