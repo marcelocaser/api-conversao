@@ -1,0 +1,31 @@
+version: '3.8'
+
+networks: 
+    api-network:
+        driver: bridge
+
+volumes: 
+    mongodb-vol:
+
+services:
+    api:
+        image: marcelocaser/api-conversao:v1
+        networks: 
+            - api-network
+        depends_on: 
+            - mongodb
+        environment: 
+            MONGODB_URI: url
+        ports:
+            - '8080:8080'
+    mongodb:
+        image: mongo:5.0.3
+        networks: 
+            - api-network
+        ports:
+            - '27017:27017'
+        volumes: 
+            - mongodb-vol:/data/db
+        environment: 
+            MONGO_INITDB_ROOT_USERNAME: mongouser
+            MONGO_INITDB_ROOT_PASSWORD: mongopwd

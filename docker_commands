@@ -24,3 +24,27 @@ docker image ls
 
 # exibe o historico de criacao da imagem
 docker image history  marcelocaser/api-conversao:v1
+
+# remove as image nao utilizadas, sem referencia <none>
+docker image prune
+
+# criando uma network para comunicacao entre os container dentro do docker
+docker network create api-net
+
+# listar as network 
+docker network ls
+
+# utilizando network 
+docker container run -d -p 8080:8080 --network=api-net marcelocaser/api-conversao:v1
+
+# utilizar volume referenciado na propria maquina
+docker container run -d -p 8080:8080 -v "$(pwd)/mongodb":/data/db marcelocaser/api-conversao:v1 OBS.: onde $(pwd) = diretorio raiz atual
+
+# criar volume gerenciado pelo docker daemon
+docker volume create mongo_vol
+
+# utilizar volume com docker daemon
+docker container run -d -p 8080:8080 -v mongo_vol:/data/db marcelocaser/api-conversao:v1
+
+# listar volumes
+docker volume ls (lista os volumes)
